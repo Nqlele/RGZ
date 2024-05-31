@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Tahoma', sans-serif;
+            height: 2000px; /* Просто для демонстрации скролла */
         }
 
         header {
@@ -144,10 +145,13 @@
             background-color: #1a73e8;
             color: white;
             text-align: center;
-            padding: 2px;
+            padding: 20px;
             position: fixed;
             bottom: 0;
+            left: 0;
             width: 100%;
+            transition: transform 0.3s ease; 
+            transform: translateY(0); 
         }
     </style>
 </head>
@@ -161,17 +165,6 @@
     </div>
 </header>
 <h1>Новости</h1>
-
-<div class="news-card" style="display: none;">
-    <h2>Почта Банк внедрил новую систему безопасности</h2>
-    <p>Дата: 01.05.2023</p>
-    <p>Для повышения безопасности данных клиентов...</p>
-    <button onclick="toggleNewsContent(this)">Показать</button>
-    <div class="news-content">
-        <p>Полный текст новости: Для повышения безопасности данных клиентов Почта Банк внедрил новую систему безопасности, которая обеспечивает защиту персональной информации и предотвращает несанкционированный доступ.</p>
-    </div>
-</div>
-
 <div class="news-card" style="display: none;">
     <h2>Почта Банк заключил партнерство с крупной ИТ-компанией</h2>
     <p>Дата: 28.04.2023</p>
@@ -276,10 +269,26 @@
     <h2>НОВОСТИ ЗАКОНЧИЛИСЬ</h2>
 </div>
 <button id="showMoreButton" onclick="showMore()">Показать ещё</button>
-<footer>
-    <p>© 2024 АО «Почта Банк». Все права защищены.</p>
-    <p><a href="https://www.pochtabank.ru/privacy">Политика конфиденциальности</a> | <a href="https://www.pochtabank.ru/terms">Условия использования</a></p>
+<footer id="footer">
+    &copy; 2024 АО ПОЧТА БАНК
 </footer>
+
+<script>
+    let lastScrollTop = 0;
+    const footer = document.getElementById('footer');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) { // Скролл вниз
+            footer.style.transform = 'translateY(100%)';
+        } else { // Скролл вверх
+            footer.style.transform = 'translateY(0)';
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+</script>
 
 <script>
 
