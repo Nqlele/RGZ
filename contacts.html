@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Контактные данные АО Почта Банк</title>
+  <title>АО Почта Банк</title>
   <link rel="stylesheet" href="main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -17,33 +17,27 @@
     header {
       background-color: #1a73e8;
       color: white;
-      padding: 20px;
+      padding: 35px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .logo {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .logo img {
       height: 50px;
     }
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li {
-      display: inline;
-      margin-right: 20px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-    }
-
     .login {
+      position: fixed;
+      top: 20px;
+      right: 20px;
       background-color: #d32f2f;
       color: white;
       border: none;
@@ -57,14 +51,55 @@
       background-color: #b71c1c;
     }
 
-    h1, h2 {
-      margin-top: 30px;
-    }
-
     #map {
       height: 500px;
       width: 100%;
     }
+
+    .menu-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+    }
+
+    .menu-panel {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .menu-panel ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .menu-panel ul li {
+      margin-bottom: 10px;
+    }
+
+    .menu-panel ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .menu-panel ul li a:hover {
+      color: #007bff;
+    }
+    footer {
+            background-color: #1a73e8;
+            color: white;
+            text-align: center;
+            padding: 2px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
   </style>
 </head>
 <body>
@@ -72,29 +107,37 @@
     <div class="logo">
       <a href="index.html"><img src="logo.png" alt="Логотип компании"></a>
     </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">О компании</a></li>
-        <li><a href="news.html">Новости</a></li>
-        <li><a href="exchange.html" class="current">Курс валют</a></li>
-        <li><a href="contacts.html">Контактные данные</a></li>
-        <li><a href="video.html">Видео</a></li>
-      </ul>
-    </nav>
     <a href="https://my.pochtabank.ru/login"><button class="login">Личный кабинет</button></a>
+    <div class="menu-icon" onclick="toggleMenu()">
+      &#9776; <!-- Символ "бутерброд" -->
+    </div>
   </header>
-  
+
+  <div class="menu-panel" id="menuPanel">
+    <ul>
+      <li><a href="index.html">О компании</a></li>
+      <li><a href="news.html">Новости</a></li>
+      <li><a href="exchange.html">Курс валют</a></li>
+      <li><a href="contacts.html">Контактные данные</a></li>
+      <li><a href="video.html">Видео</a></li>
+    </ul>
+  </div>
+
   <h1>Контактные данные АО Почта Банк</h1>
-  
+
   <h2>Телефоны</h2>
   <p>Телефон: +7 (495) 123-45-67</p>
-  
+
   <h2>Адрес</h2>
-  <p>Адрес: ул. Мясницкая, д. 12, стр. 1, г. Москва, 107031</p>
-  
+  <p>Адрес:  г. Москва, наб. Пресненская, д. 12, этаж 40</p>
+
   <h2>Интерактивная карта</h2>
   <div id="map"></div>
-  
+  <footer>
+    <p>© 2024 АО «Почта Банк». Все права защищены.</p>
+    <p><a href="https://www.pochtabank.ru/privacy">Политика конфиденциальности</a> | <a href="https://www.pochtabank.ru/terms">Условия использования</a></p>
+</footer>
+
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
   <script type="text/javascript">
     ymaps.ready(function () {
@@ -112,6 +155,13 @@
 
       myMap.geoObjects.add(myPlacemark);
     });
+  </script>
+
+  <script>
+    function toggleMenu() {
+      const menuPanel = document.querySelector('.menu-panel');
+      menuPanel.style.display = menuPanel.style.display === 'block' ? 'none' : 'block';
+    }
   </script>
 </body>
 </html>

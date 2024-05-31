@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АО ПОЧТА БАНК</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1001;
+        }
+
+        .login:hover {
+            background-color: #b71c1c;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-panel {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .menu-panel ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu-panel ul li {
+            margin-bottom: 10px;
+        }
+
+        .menu-panel ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .menu-panel ul li a:hover {
+            color: #007bff;
+        }
+
+        .content {
+            padding: 100px 20px 20px 20px;
+        }
+
+        h1, h2 {
+            color: #1a73e8;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .news-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+
+        .news-card h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .news-card p {
+            margin-bottom: 5px;
+        }
+
+        .news-card button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .news-card button:hover {
+            background-color: #45a049;
+        }
+
+        .news-card .news-content {
+            display: none;
+        }
+
+        footer {
+            background-color: #1a73e8;
+            color: white;
+            text-align: center;
+            padding: 2px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="index.html"><img src="logo.png" alt="Логотип компании"></a>
+    </div>
+    <a href="https://my.pochtabank.ru/login"><button class="login">Личный кабинет</button></a>
+    <div class="menu-icon" onclick="toggleMenu()">
+        &#9776; <!-- Символ "бутерброд" -->
+    </div>
+</header>
+
+<div class="menu-panel" id="menuPanel">
+    <ul>
+        <li><a href="index.html">О компании</a></li>
+        <li><a href="news.html">Новости</a></li>
+        <li><a href="exchange.html">Курс валют</a></li>
+        <li><a href="contacts.html">Контактные данные</a></li>
+        <li><a href="video.html">Видео</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    <h1 id="about">О компании</h1>
+    <h2>Направления деятельности</h2>
+    <p>АО «Почта Банк» является универсальным розничным банком, предоставляющим широкий спектр финансовых услуг. Наши основные направления включают в себя:</p>
+    <ul>
+        <li>Кредитование физических лиц и малого бизнеса</li>
+        <li>Прием депозитов и сберегательных счетов</li>
+        <li>Осуществление денежных переводов и платежей</li>
+        <li>Предоставление страховых услуг и финансовых консультаций</li>
+    </ul>
+    <h2 id="year">Год создания</h2>
+    <p>25 марта 2016 года.</p>
+    <h2 id="founders">Основатели</h2>
+    <p>Основателями нашей компании являются:</p>
+    <ul>
+        <li>Дмитрий Руденко</li>
+        <li>Андрей Костин</li>
+    </ul>
+    <h2 id="history">Краткая история</h2>
+    <p>Свой исток «Почта Банк» берёт в Брянске. В начале 2000-х Банк ВТБ выкупает активы действующего на Брянщине «Бежица-Банка» и на его основе создаёт «лёгкую бизнес-структуру». «Лето Банк» – такое название получила эта новая коммерческая организация, должен был с помощью экспресс-кредитования привлечь массового клиента.</p>
+    <p>Спустя 3 года директор АО «Почта России» Николай Подгузов и министр связи Николай Никифоров договариваются с главой ПАО ВТБ Андреем Костиным о продаже государству 50% - го пакета акций «Лето Банка». Цель покупки – открытие под эгидой ФГУП Почта России кредитной организации –«Национальный почтовый банк».</p>
+    <p>В 2016 году новая коммерческая структура была создана, но под другим брендом. После подписания соответствующих документов она начала свою деятельность под логотипом «Почта Банк».</p>
+    <h2 id="photos">Фотографии</h2>
+    <img src="photo1.jpg" alt="Фотография объекта">
+    <h2>Ссылка на официальный сайт</h2>
+    <a href="https://www.pochtabank.ru/" target="_blank">Официальный сайт компании</a>
+</div>
+
+<h2>Информация о процентных ставках по договорам банковского вклада с физическими лицами</h2>
+<p>АО «Почта Банк» универсальный розничный банк, оказывающий услуги кредитования, размещения средств населения на вклады и сберегательные счета. У банка более 30 000 точек присутствия.</p>
+<p>107061, г. Москва, Преображенская площадь, д. 8. Тел: +7 495 532 13 00. Универсальная лицензия Банка России № 650 от 09.04.2020</p>
+<p>АО «Почта Банк» использует файлы «cookie» с целью персонализации сервисов и повышения удобства пользования веб-сайтом</p>
+
+<footer>
+    <p>© 2024 АО «Почта Банк». Все права защищены.</p>
+    <p><a href="https://www.pochtabank.ru/privacy">Политика конфиденциальности</a> | <a href="https://www.pochtabank.ru/terms">Условия использования</a></p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menuPanel = document.querySelector('.menu-panel');
+        menuPanel.style.display = menuPanel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function toggleContent(button) {
+        const content = button.nextElementSibling;
+        const isVisible = content.style.display === 'block';
+        content.style.display = isVisible ? 'none' : 'block';
+        button.textContent = isVisible ? 'Подробнее' : 'Скрыть';
+    }
+</script>
+</body>
+</html>

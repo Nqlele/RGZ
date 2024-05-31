@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru" style="font-family: 'Tahoma', sans-serif;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс валют</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        .currency-select {
+            width: 75%;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 10px;
+            border: 3px solid;
+        }
+        body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+        .logo {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .login {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login:hover {
+      background-color: #b71c1c;
+    }
+
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+        header {
+      background-color: #1a73e8;
+      color: white;
+      padding: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+        .block {
+            display: inline-block;
+            flex: 1;
+            text-align: center;
+            margin: 0 70px;
+        }
+        .smallblock {
+            flex: 0.5;
+            text-align: center;
+        }
+        #butto {
+            cursor: pointer;
+            font-size: 30px;
+            border: none;
+            background-color: white;
+            border-radius: 12px;
+            transition: background-color 0.3s;
+        }
+        .menu-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+    }
+
+    .menu-panel {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .menu-panel ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .menu-panel ul li {
+      margin-bottom: 10px;
+    }
+
+    .menu-panel ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .menu-panel ul li a:hover {
+      color: #007bff;
+    }
+        #butto:hover {
+            background-color: rgb(217, 217, 217);
+        }
+        .general {
+            display: flex;
+            align-items: center;
+            padding: 50px;
+            width: 75%;
+            margin: 0 auto 50px;
+            border-radius: 20px;
+            background-color: white;
+        }
+        #numb1, #numb2 {
+            font-size: 34px;
+            border: none;
+            padding: 50px 0;
+            width: 77%;
+            font-weight: bold;
+            font-family: 'Tahoma', sans-serif;
+            text-align: center;
+            outline:none;
+        }
+        input {outline:none;}
+        .forval {
+            font-size: 34px;
+            font-weight: bold;
+            font-family: 'Tahoma', sans-serif;
+            color: rgb(25, 22, 193);
+        }
+        .boxxx {
+            width: 350px;
+            height: 170px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            margin: 30px auto;
+            border-radius: 10px;
+            position:relative;
+        }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        #output1, #output2 {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            opacity: 0.5;
+        }
+        footer {
+            background-color: #1a73e8;
+            color: white;
+            text-align: center;
+            padding: 2px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body onload="getCurr()">
+    <header>
+        <div class="logo">
+          <a href="index.html"><img src="logo.png" alt="Логотип компании"></a>
+        </div>
+        <a href="https://my.pochtabank.ru/login"><button class="login">Личный кабинет</button></a>
+        <div class="menu-icon" onclick="toggleMenu()">
+          &#9776; <!-- Символ "бутерброд" -->
+        </div>
+      </header>
+    
+      <div class="menu-panel" id="menuPanel">
+        <ul>
+          <li><a href="index.html">О компании</a></li>
+          <li><a href="news.html">Новости</a></li>
+          <li><a href="exchange.html">Курс валют</a></li>
+          <li><a href="contacts.html">Контактные данные</a></li>
+          <li><a href="video.html">Видео</a></li>
+        </ul>
+      </div>
+    
+    <main>
+        <div class="container">
+        </div>
+
+        <div class="general">
+            <div class="block">
+                <select class="currency-select" id="currency-select1">
+                    <option value="RUB" selected>Российский рубль (RUB)</option>
+                    <option value="MDL">Молдавский лей (MDL)</option>
+                </select><br>
+                <div class="boxxx">
+                    <div class="forval"><input id="numb1" type="number" value="1" min="0" onkeydown="return event.key !== '-';"><span class="currency-symbol">&#8381</span></div>
+                    <div id="output1"></div>
+                </div>
+            </div>
+
+            <div class="smallblock"><button id="butto" onclick="changing()">⇄</button></div>
+
+            <div class="block">
+                <select class="currency-select" id="currency-select2">
+                    <option value="RUB">Российский рубль (RUB)</option>
+                    <option value="MDL" selected>Молдавский лей (MDL)</option>
+                </select><br>
+                <div class="boxxx">
+                    <div class="forval"><input id="numb2" type="number" value="" readonly><span class="currency-symbol">L</span></div>
+                    <div id="output2"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+            <p>© 2024 АО «Почта Банк». Все права защищены.</p>
+            <p><a href="https://www.pochtabank.ru/privacy">Политика конфиденциальности</a> | <a href="https://www.pochtabank.ru/terms">Условия использования</a></p>
+            <div style="width: 80%; margin: 0px auto;">
+            <div style="font-size: 18px; border-bottom: 1px solid rgba(0, 0, 0, 0.2); height: 60px; line-height: 60px;">
+                123112, г. Москва, наб. Пресненская, д. 12, этаж 40 © 2022 - 2024 АО ПОЧТА БАНК Источник данных:
+                <a href="https://www.cbr-xml-daily.ru/">API для курсов ЦБ РФ</a>
+            </div>
+        </div>    
+    </footer>
+
+    <script>
+        let imp = document.getElementById('numb1');
+        let result = document.getElementById('numb2');
+        let output1 = document.getElementById('output1');
+        let output2 = document.getElementById('output2');
+        let Mol;
+        let Rus;
+
+        function getCurr() {
+            const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(json) {
+                    Rus = json.Valute.MDL.Value / json.Valute.MDL.Nominal;
+                    Mol = (1 / Rus).toFixed(4); 
+                    result.value = Mol;
+                    output1.innerText = `1 RUB = ${Mol} MDL`;
+                    output2.innerText = `1 MDL = ${Rus} RUB`;
+                    imp.addEventListener('input', function() {
+                        number = parseFloat(this.value) || 0;
+                        result.value = (number * Mol).toFixed(4);
+                    });
+                })
+        }
+
+        const znak = document.querySelectorAll('.currency-symbol');
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const selectElements = document.querySelectorAll('.currency-select');
+
+            selectElements.forEach(selectElement => {
+                selectElement.addEventListener('change', (event) => {
+                    const selectedValue1 = selectElements[0].value;
+                    const selectedValue2 = selectElements[1].value;
+                    SelectChange(selectedValue1, selectedValue2);
+                });
+            });
+
+            function SelectChange(value1, value2) {
+                if (value1 === 'RUB' && value2 === 'MDL') {
+                    output1.innerText = `1 RUB = ${Mol} MDL`;
+                    output2.innerText = `1 MDL = ${Rus} RUB`;
+                    znak[0].innerHTML = '&#8381';
+                    znak[1].innerText = 'L';
+                    let number = parseFloat(imp.value) || 0;
+                    result.value = (number * Mol).toFixed(4);
+                    imp.addEventListener('input', function() {
+                        number = parseFloat(this.value) || 0;
+                        result.value = (number * Mol).toFixed(4);
+                    });
+                }
+                else if (value1 === 'MDL' && value2 === 'RUB') {
+                    output1.innerText = `1 MDL = ${Rus} RUB`;
+                    output2.innerText = `1 RUB = ${Mol} MDL`;
+                    znak[0].innerText = 'L';
+                    znak[1].innerHTML = '&#8381';
+                    let number = parseFloat(imp.value) || 0;
+                    result.value = (number * Rus).toFixed(4);
+                    imp.addEventListener('input', function() {
+                        number = parseFloat(this.value) || 0;
+                        result.value = (number * Rus).toFixed(4);
+                    });
+                }
+                else if (value1 === 'RUB' && value2 === 'RUB') {
+                    output1.innerText = `1 RUB = 1 RUB`;
+                    output2.innerText = `1 RUB = 1 RUB`;
+                    znak[0].innerHTML = '&#8381';
+                    znak[1].innerHTML = '&#8381';
+                    let number = parseFloat(imp.value) || 0;
+                    result.value = number;
+                    imp.addEventListener('input', function() {
+                        number = parseFloat(this.value) || 0;
+                        result.value = number;
+                    });
+                }
+                else {
+                    output1.innerText = `1 MDL = 1 MDL`;
+                    output2.innerText = `1 MDL = 1 MDL`;
+                    znak[0].innerText = 'L';
+                    znak[1].innerText = 'L';
+                    let number = parseFloat(imp.value) || 0;
+                    result.value = number;
+                    imp.addEventListener('input', function() {
+                        number = parseFloat(this.value) || 0;
+                        result.value = number;
+                    });
+                }
+            }
+        });
+
+        function changing() {
+            const selectElements = document.querySelectorAll('.currency-select');
+            let value1 = selectElements[0].value;
+            let value2 = selectElements[1].value;
+
+            selectElements[0].value = value2;
+            selectElements[1].value = value1;
+
+            const event1 = new Event('change');
+            const event2 = new Event('change');
+            selectElements[0].dispatchEvent(event1);
+            selectElements[1].dispatchEvent(event2);
+        }
+    </script>
+    <script>
+        function toggleMenu() {
+          const menuPanel = document.querySelector('.menu-panel');
+          menuPanel.style.display = menuPanel.style.display === 'block' ? 'none' : 'block';
+        }
+      </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АО ПОЧТА БАНК</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Tahoma', sans-serif;
+        }
+
+        header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .logo img {
+            height: 50px;
+            right: 1000px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .login {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s; 
+        }
+
+        .login:hover {
+            background-color: #b71c1c;
+        }
+
+        .news-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .news-card h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .news-card p {
+            margin-bottom: 5px;
+        }
+
+        .news-card button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .news-card button:hover {
+            background-color: #45a049;
+        }
+
+        .news-card .news-content {
+            display: none;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .menu-panel {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .menu-panel ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu-panel ul li {
+            margin-bottom: 10px;
+        }
+
+        .menu-panel ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .menu-panel ul li a:hover {
+            color: #007bff;
+        }
+        footer {
+            background-color: #1a73e8;
+            color: white;
+            text-align: center;
+            padding: 2px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="index.html"><img src="logo.png" alt="Логотип компании"></a>
+    </div>
+    <div class="login">
+        <a href="https://my.pochtabank.ru/login">Личный кабинет</a>
+    </div>
+</header>
+<h1>Новости</h1>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк внедрил новую систему безопасности</h2>
+    <p>Дата: 01.05.2023</p>
+    <p>Для повышения безопасности данных клиентов...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Для повышения безопасности данных клиентов Почта Банк внедрил новую систему безопасности, которая обеспечивает защиту персональной информации и предотвращает несанкционированный доступ.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк заключил партнерство с крупной ИТ-компанией</h2>
+    <p>Дата: 28.04.2023</p>
+    <p>Новое партнерство направлено на развитие цифровых технологий...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Новое партнерство направлено на развитие цифровых технологий и улучшение сервиса для клиентов Почта Банка. Совместные проекты позволят внедрить новые инновационные решения и улучшить качество обслуживания.</p>
+    </div>
+</div>
+
+    <div class="news-card" style="display: none;">
+    <h2>Почта Банк объявил о запуске нового кредитного продукта</h2>
+    <p>Дата: 20.05.2023</p>
+    <p>Почта Банк представил новый кредитный продукт, который позволит клиентам...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Почта Банк представил новый кредитный продукт, который позволит клиентам воспользоваться выгодными условиями кредитования. Продукт разработан с учетом современных требований и потребностей клиентов.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк открыл новое отделение в Москве</h2>
+    <p>Дата: 18.05.2023</p>
+    <p>Почта Банк открыл новое отделение в столице, предоставляя жителям...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Почта Банк открыл новое отделение в столице, предоставляя жителям Москвы ещё больше возможностей для удобного банковского обслуживания. Новое отделение оснащено современным оборудованием и предлагает широкий спектр услуг.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк вошел в топ-10 банков по объему выданных кредитов</h2>
+    <p>Дата: 15.05.2023</p>
+    <p>По итогам первого квартала 2023 года Почта Банк занял 9-е место...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: По итогам первого квартала 2023 года Почта Банк занял 9-е место в рейтинге банков по объему выданных кредитов, что свидетельствует о доверии клиентов и конкурентоспособности банка на рынке кредитования.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк провел благотворительную акцию</h2>
+    <p>Дата: 10.05.2023</p>
+    <p>Почта Банк организовал благотворительную акцию в поддержку детей...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Почта Банк организовал благотворительную акцию в поддержку детей из малообеспеченных семей, предоставив необходимые средства и подарки. Акция прошла в нескольких городах России и получила положительные отклики.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк улучшил условия по ипотечным кредитам</h2>
+    <p>Дата: 05.05.2023</p>
+    <p>Банк снизил ставки по ипотечным кредитам, что позволит...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Банк снизил ставки по ипотечным кредитам, что позволит большему числу клиентов улучшить свои жилищные условия на более выгодных условиях. Новые ставки доступны как для новых, так и для текущих клиентов банка.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк провел семинар для предпринимателей</h2>
+    <p>Дата: 25.04.2023</p>
+    <p>Семинар был посвящен вопросам финансирования малого бизнеса...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Семинар был посвящен вопросам финансирования малого бизнеса и предоставлению финансовой поддержки начинающим предпринимателям. Участники получили ценные советы и рекомендации от экспертов банка.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк запустил новую рекламную кампанию</h2>
+    <p>Дата: 22.04.2023</p>
+    <p>Новая рекламная кампания направлена на привлечение новых клиентов...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Новая рекламная кампания направлена на привлечение новых клиентов и информирование о выгодных предложениях Почта Банка. Кампания включает в себя телевизионные ролики, онлайн-рекламу и мероприятия в социальных сетях.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк представил новый мобильный приложение</h2>
+    <p>Дата: 20.04.2023</p>
+    <p>Новое мобильное приложение позволяет клиентам...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Новое мобильное приложение позволяет клиентам банка управлять своими финансами легко и удобно. Приложение включает в себя функционал для просмотра баланса, перевода средств и оплаты услуг.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>Почта Банк начал сотрудничество с международной платёжной системой</h2>
+    <p>Дата: 18.04.2023</p>
+    <p>Новое сотрудничество открывает дополнительные возможности для клиентов...</p>
+    <button onclick="toggleNewsContent(this)">Показать</button>
+    <div class="news-content">
+        <p>Полный текст новости: Новое сотрудничество открывает дополнительные возможности для клиентов Почта Банка, включая международные переводы и оплату покупок за рубежом. Это важный шаг для расширения услуг банка и улучшения сервиса для клиентов.</p>
+    </div>
+</div>
+
+<div class="news-card" style="display: none;">
+    <h2>НОВОСТИ ЗАКОНЧИЛИСЬ</h2>
+</div>
+<button id="showMoreButton" onclick="showMore()">Показать ещё</button>
+<footer>
+    <p>© 2024 АО «Почта Банк». Все права защищены.</p>
+    <p><a href="https://www.pochtabank.ru/privacy">Политика конфиденциальности</a> | <a href="https://www.pochtabank.ru/terms">Условия использования</a></p>
+</footer>
+
+<script>
+
+    function showMore() {
+        var hiddenNews = document.querySelectorAll('.news-card[style="display: none;"]');
+        for (var i = 0; i < hiddenNews.length; i++) {
+            hiddenNews[i].style.display = 'block'; // Показываем скрытые новости
+            if (i === defaultNewsCount - 1) { // Если достигнуто количество новостей для показа по умолчанию
+                document.getElementById('showMoreButton').style.display = 'none'; // Скрываем кнопку "Показать ещё"
+                break; // Прерываем цикл
+            }
+        }
+    }
+
+    function toggleNewsContent(button) {
+        var newsContent = button.parentNode.querySelector('.news-content');
+        if (newsContent.style.display === 'none') {
+            newsContent.style.display = 'block';
+            button.textContent = 'Скрыть';
+        } else {
+            newsContent.style.display = 'none';
+            button.textContent = 'Показать';
+        }
+    }
+
+    function toggleMenu() {
+        const menuPanel = document.querySelector('.menu-panel');
+        menuPanel.style.display = menuPanel.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+<div class="menu-icon" onclick="toggleMenu()">
+    &#9776; <!-- Символ "бутерброд" -->
+</div>
+<div class="menu-panel">
+    <ul>
+        <li><a href="index.html">О компании</a></li>
+        <li><a href="news.html">Новости</a></li>
+        <li><a href="exchange.html">Курс валют</a></li>
+        <li><a href="contacts.html">Контактные данные</a></li>
+        <li><a href="video.html">Видео</a></li>
+    </ul>
+</div>
+</body>
+</html>
