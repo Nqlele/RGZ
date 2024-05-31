@@ -24,13 +24,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            top: 0; 
+            width: 100%; 
+            z-index: 1000;        
         }
 
         .logo {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+        position: fixed; 
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000; 
         }
 
         .logo img {
@@ -55,18 +60,18 @@
         }
 
         .login {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #d32f2f;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s; 
-        }
-
+        position: fixed; 
+        top: 20px;
+        right: 20px;
+        background-color: #d32f2f;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        z-index: 1000; 
+}
         .login:hover {
             background-color: #b71c1c;
         }
@@ -107,10 +112,11 @@
         }
 
         .menu-icon {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            cursor: pointer;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        cursor: pointer;
+        z-index: 1000; 
         }
 
         .menu-panel {
@@ -164,6 +170,11 @@
         <a href="https://my.pochtabank.ru/login">Личный кабинет</a>
     </div>
 </header>
+<style>
+    h1 {
+        margin-top: 70px; 
+    }
+</style>
 <h1>Новости</h1>
 <div class="news-card" style="display: none;">
     <h2>Почта Банк заключил партнерство с крупной ИТ-компанией</h2>
@@ -269,26 +280,7 @@
     <h2>НОВОСТИ ЗАКОНЧИЛИСЬ</h2>
 </div>
 <button id="showMoreButton" onclick="showMore()">Показать ещё</button>
-<footer id="footer">
-    &copy; 2024 АО ПОЧТА БАНК
-</footer>
 
-<script>
-    let lastScrollTop = 0;
-    const footer = document.getElementById('footer');
-
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop > lastScrollTop) { // Скролл вниз
-            footer.style.transform = 'translateY(100%)';
-        } else { // Скролл вверх
-            footer.style.transform = 'translateY(0)';
-        }
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    });
-</script>
 
 <script>
 
